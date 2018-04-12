@@ -21,9 +21,15 @@ gif_file = "./gifs/" + random.choice(os.listdir("./gifs/"))
 
 gif = masto.media_post(gif_file)
 
-masto.status_post(status="﻿  ", \
-        media_ids=[gif], \
-        visibility='unlisted',
-        sensitive=None)
+try:
+    masto.status_post(status="﻿  ", \
+            media_ids=[gif], \
+            visibility='unlisted',
+            sensitive=None)
+except:
+    print("Failed to post to mastodon")
 
-twitter.update_with_media(gif_file)
+try:
+    twitter.update_with_media(gif_file)
+except:
+    print("Failed to post to twitter")
